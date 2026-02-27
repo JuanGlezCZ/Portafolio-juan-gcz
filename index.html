@@ -683,7 +683,7 @@
           <p class="text-xs text-slate-500 leading-relaxed">Ionic/Angular · Apps en App Store & Play Store · JWT auth ·
             REST APIs.</p>
         </div>
-        <div class="glass-card p-6 rounded-3xl mt-8">
+        <div class="glass-card p-6  rounded-3xl mt-8">
           <div class="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4">
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -1537,6 +1537,46 @@
       s.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': items });
       document.body.appendChild(s);
     } catch (e) { }
+  </script>
+
+  <!-- Supabase Visitor Tracking -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      const supabaseUrl = 'https://eoxaedvoqegfywciqiuq.supabase.co';
+      const supabaseKey = 'sb_publishable_NyBD80BuxZN_cvhMiUTdmA_5K6IcMGB';
+      const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+      async function trackVisit() {
+        try {
+          // Get IP address via ipify
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          if (!ipRes.ok) throw new Error('IP fetch failed');
+          const { ip } = await ipRes.json();
+
+          const { error } = await _supabase
+            .from('visitor_logs')
+            .insert([
+              {
+                ip_address: ip,
+                user_agent: navigator.userAgent,
+                page_path: window.location.pathname
+              }
+            ]);
+
+          if (error) console.error('Supabase error:', error.message);
+        } catch (err) {
+          console.error('Tracking error:', err);
+        }
+      }
+
+      // Track on load
+      if (document.readyState === 'complete') {
+        trackVisit();
+      } else {
+        window.addEventListener('load', trackVisit);
+      }
+    })();
   </script>
 </body>
 

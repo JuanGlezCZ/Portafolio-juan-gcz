@@ -1,0 +1,1583 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="description"
+    content="Juan Manuel Gonzalez Cruz — Senior Fullstack Engineer con +5 años. ERP empresarial, apps móviles iOS/Android, integraciones HubSpot CRM y DevOps con AWS S3. React, Laravel, .NET, Ionic." />
+  <meta property="og:title" content="Juan Manuel Gonzalez — Senior Fullstack Engineer" />
+  <meta property="og:description"
+    content="Soluciones de alto impacto: ERP + GPS en tiempo real, HubSpot CRM, AWS S3, apps móviles. +5 años · React · Laravel · Ionic." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=1200" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap"
+    rel="stylesheet">
+  <title>Juan Manuel Gonzalez | Senior Fullstack Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui"],
+            heading: ["Outfit", "Inter", "sans-serif"]
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+              400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1',
+              800: '#075985', 900: '#0c4a6e', 950: '#082f49'
+            },
+            slate: { 950: '#020617' }
+          },
+          boxShadow: {
+            'premium': '0 0 0 1px rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.5)',
+            'glow-brand': '0 0 25px rgba(14,165,233,0.35)',
+            'glow-card': '0 0 0 1px rgba(14,165,233,0.25), 0 20px 40px -10px rgba(0,0,0,0.5), 0 0 30px -5px rgba(14,165,233,0.12)',
+          },
+          animation: {
+            'float': 'float 7s ease-in-out infinite',
+            'float-slow': 'float 10s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-22px) rotate(3deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.8' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── Noise & Background ─────────────────────────────── */
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .025;
+      z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .mesh-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-color: #020617;
+      background-image:
+        radial-gradient(at 15% 15%, hsla(202, 100%, 22%, 0.18) 0, transparent 55%),
+        radial-gradient(at 85% 5%, hsla(210, 100%, 18%, 0.12) 0, transparent 50%),
+        radial-gradient(at 90% 85%, hsla(199, 100%, 20%, 0.15) 0, transparent 55%),
+        radial-gradient(at 5% 90%, hsla(205, 100%, 18%, 0.12) 0, transparent 50%);
+    }
+
+    .dot-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* ── Glass ──────────────────────────────────────────── */
+    .glass {
+      backdrop-filter: blur(14px) saturate(180%);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    .glass-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-color: rgba(14, 165, 233, 0.3);
+      box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.2), 0 24px 48px -12px rgba(0, 0, 0, 0.6), 0 0 35px -5px rgba(14, 165, 233, 0.12);
+    }
+
+    /* ── Typography ─────────────────────────────────────── */
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #93c5fd 25%, #38bdf8 55%, #0ea5e9 80%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-number {
+      font-size: 9rem;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.025);
+      user-select: none;
+      pointer-events: none;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.05em;
+      position: absolute;
+      top: -2rem;
+      right: 0;
+    }
+
+    /* ── Progress bar ───────────────────────────────────── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      z-index: 10001;
+      background: linear-gradient(90deg, transparent, #7dd3fc, #0ea5e9);
+      transition: width 0.1s ease;
+    }
+
+    /* ── Reveal ─────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Typewriter cursor ──────────────────────────────── */
+    .type-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: #38bdf8;
+      margin-left: 2px;
+      border-radius: 1px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ── Skill bars ─────────────────────────────────────── */
+    .skill-bar {
+      height: 100%;
+      border-radius: 9999px;
+      width: 0%;
+      transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .skill-bar-blue {
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+    }
+
+    .skill-bar-orange {
+      background: linear-gradient(90deg, #c2410c, #fb923c);
+    }
+
+    /* ── Tech cloud tags ────────────────────────────────── */
+    .tech-filter-tag {
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tech-filter-tag:hover {
+      border-color: rgba(14, 165, 233, 0.4);
+      background: rgba(14, 165, 233, 0.08);
+      color: #38bdf8;
+    }
+
+    .tech-filter-tag.active-filter {
+      background: rgba(14, 165, 233, 0.18);
+      border-color: rgba(14, 165, 233, 0.55);
+      color: #38bdf8;
+      box-shadow: 0 0 12px -3px rgba(14, 165, 233, 0.3);
+    }
+
+    /* ── HubSpot accent ─────────────────────────────────── */
+    .hubspot-gradient {
+      background: linear-gradient(135deg, rgba(255, 122, 89, 0.08) 0%, rgba(255, 90, 40, 0.03) 100%);
+      border: 1px solid rgba(255, 122, 89, 0.2);
+    }
+
+    .hubspot-gradient:hover {
+      border-color: rgba(255, 122, 89, 0.45);
+    }
+
+    /* ── Toast ──────────────────────────────────────────── */
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes toastOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    }
+
+    /* ── Back to top ────────────────────────────────────── */
+    #backToTop {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #backToTop.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Timeline ───────────────────────────────────────── */
+    .timeline-line {
+      background: linear-gradient(to bottom, rgba(14, 165, 233, 0.5), rgba(255, 255, 255, 0.05) 80%, transparent);
+    }
+
+    /* ── Section divider ────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.25), transparent);
+    }
+
+    /* ── Form spinner ───────────────────────────────────── */
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-top-color: #020617;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+    }
+
+    /* ── Orbs (hero bg) ─────────────────────────────────── */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      pointer-events: none;
+    }
+  </style>
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='48' fill='%230ea5e9'/%3E%3Cpath d='M64 168c48 24 80-24 128 0' stroke='white' stroke-width='16' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='88' cy='96' r='20' fill='white'/%3E%3C/svg%3E" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+</head>
+
+<body
+  class="bg-slate-950 text-slate-200 font-sans selection:bg-brand-500/30 selection:text-white antialiased overflow-x-hidden">
+
+  <div class="noise"></div>
+  <div class="mesh-gradient"></div>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Back to top -->
+  <button id="backToTop" title="Volver arriba"
+    class="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-brand-500 text-slate-950 shadow-glow-brand hover:bg-brand-400 hover:scale-110 transition-all duration-200">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+  <!-- ─── NAV ────────────────────────────────────────────────── -->
+  <header class="fixed top-0 inset-x-0 z-50 flex justify-center p-4">
+    <nav class="glass px-6 py-3 rounded-full flex items-center gap-8 shadow-premium max-w-fit">
+      <a href="#home" class="font-extrabold tracking-tighter text-lg group">
+        juan<span class="text-brand-400 group-hover:text-brand-300 transition-colors">.dev</span>
+      </a>
+      <div class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+        <a href="#proyectos" class="hover:text-white transition-colors relative group">
+          proyectos<span
+            class="absolute -bottom-1 left-0 w-0 h-px bg-brand-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#skills" class="hover:text-white transition-colors relative group">
+          skills<span class="absolute -bottom-1 left-0 w-0 h-px bg-brand-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#ecosistema" class="hover:text-white transition-colors relative group">
+          ecosistema<span
+            class="absolute -bottom-1 left-0 w-0 h-px bg-brand-400 transition-all group-hover:w-full"></span>
+        </a>
+        <a href="#experiencia" class="hover:text-white transition-colors relative group">
+          experiencia<span
+            class="absolute -bottom-1 left-0 w-0 h-px bg-brand-400 transition-all group-hover:w-full"></span>
+        </a>
+      </div>
+      <div class="flex items-center gap-3 pl-4 border-l border-white/10">
+        <button id="themeToggle" class="p-1.5 rounded-full hover:bg-white/5 transition-colors"
+          aria-label="Toggle theme">
+          <svg id="sun" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="12" cy="12" r="4" stroke-width="2" />
+            <path stroke-linecap="round"
+              d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364 6.364l-1.414-1.414M7.05 7.05L5.636 5.636m12.728 0l-1.414 1.414M7.05 16.95l-1.414 1.414" />
+          </svg>
+          <svg id="moon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 1112.646 3.646 7 7 0 0020.354 15.354z" />
+          </svg>
+        </button>
+        <button id="mobileMenuButton"
+          class="md:hidden p-1.5 rounded-full hover:bg-white/5 transition-colors text-slate-400" aria-label="Menú">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <a href="#contacto"
+          class="hidden md:inline-flex text-xs font-bold uppercase tracking-widest px-4 py-2 bg-brand-500 rounded-full text-slate-950 hover:bg-brand-400 transition-all hover:scale-105">
+          Contáctame
+        </a>
+      </div>
+    </nav>
+
+    <!-- Mobile menu dropdown -->
+    <div id="mobileMenu" class="hidden fixed top-20 inset-x-4 glass rounded-2xl p-6 shadow-premium z-50 md:hidden">
+      <nav class="flex flex-col gap-1 text-sm font-medium">
+        <a href="#proyectos"
+          class="hover:text-brand-400 transition-colors py-3 border-b border-white/5 flex items-center gap-2"><span
+            class="text-brand-500 text-xs">→</span> Proyectos</a>
+        <a href="#skills"
+          class="hover:text-brand-400 transition-colors py-3 border-b border-white/5 flex items-center gap-2"><span
+            class="text-brand-500 text-xs">→</span> Skills</a>
+        <a href="#ecosistema"
+          class="hover:text-brand-400 transition-colors py-3 border-b border-white/5 flex items-center gap-2"><span
+            class="text-brand-500 text-xs">→</span> Ecosistema Cloud</a>
+        <a href="#experiencia"
+          class="hover:text-brand-400 transition-colors py-3 border-b border-white/5 flex items-center gap-2"><span
+            class="text-brand-500 text-xs">→</span> Experiencia</a>
+        <div class="flex items-center justify-between pt-4">
+          <button id="mobileThemeToggle"
+            class="p-2 rounded-full hover:bg-white/5 flex items-center gap-2 text-slate-400 text-xs">
+            <svg id="mobileSun" class="h-4 w-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="4" stroke-width="2" />
+              <path stroke-linecap="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3" />
+            </svg>
+            <svg id="mobileMoon" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M20.354 15.354A9 9 0 1112.646 3.646 7 7 0 0020.354 15.354z" />
+            </svg>
+            <span>Tema</span>
+          </button>
+          <a href="#contacto"
+            class="px-5 py-2 bg-brand-500 rounded-full text-slate-950 font-bold text-xs uppercase tracking-widest hover:bg-brand-400 transition-all">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────── -->
+  <section id="home" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
+    <!-- Animated background orbs -->
+    <div class="hero-orb w-96 h-96 bg-brand-600/10 animate-float" style="top:10%;left:5%;animation-delay:0s"></div>
+    <div class="hero-orb w-64 h-64 bg-brand-500/8 animate-float-slow" style="top:40%;right:8%;animation-delay:-3s">
+    </div>
+    <div class="hero-orb w-72 h-72 bg-brand-700/10 animate-float" style="bottom:10%;left:35%;animation-delay:-5s"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-7 reveal">
+
+        <!-- Status badge -->
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-bold tracking-widest uppercase">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            Disponible para proyectos
+          </div>
+          <div class="text-xs text-slate-500 font-medium">📍 Gómez Palacio, Dgo · Remoto / Híbrido</div>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.08] mb-5">
+          Senior<br>
+          <span class="gradient-text">Fullstack</span><br>
+          <span class="text-white/90">Engineer</span>
+        </h1>
+
+        <!-- Typewriter -->
+        <p class="text-base md:text-lg text-slate-400 leading-relaxed max-w-xl mb-4">
+          Especialista en <span id="typewriter" class="text-brand-300 font-semibold"></span><span
+            class="type-cursor"></span>
+        </p>
+        <p class="text-sm text-slate-500 max-w-xl mb-10 leading-relaxed">
+          +5 años construyendo ERPs empresariales, apps móviles multiplataforma y arquitecturas cloud. Enfoque en
+          <strong class="text-slate-300">impacto medible de negocio</strong>.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="#proyectos"
+            class="group px-7 py-4 rounded-full bg-brand-500 text-slate-950 font-bold hover:bg-brand-400 transition-all hover:scale-105 shadow-glow-brand flex items-center gap-2 text-sm">
+            Ver Proyectos
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a href="assets/CV-Juan-Manuel-Gonzalez.pdf" download
+            class="px-7 py-4 rounded-full border border-white/10 hover:bg-white/5 font-bold transition-all flex items-center gap-2 text-sm hover:border-white/20">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Descargar CV
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-6 border-t border-white/5 pt-10">
+          <div>
+            <div class="text-4xl font-extrabold text-white mb-1">
+              <span class="counter" data-target="5" data-prefix="+" data-suffix="">+5</span>
+            </div>
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-widest">Años exp.</div>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-white mb-1">
+              <span class="counter" data-target="40" data-prefix="" data-suffix="+">40+</span>
+            </div>
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-widest">Proyectos</div>
+          </div>
+          <div>
+            <div class="text-4xl font-extrabold text-white mb-1">
+              <span class="counter" data-target="8" data-prefix="" data-suffix="">8</span>
+            </div>
+            <div class="text-xs text-slate-500 font-bold uppercase tracking-widest">Tecnologías</div>
+          </div>
+        </div>
+
+        <!-- Working status -->
+        <div class="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center gap-4 text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+            <span>Actualmente en: <span class="text-slate-300 font-medium">DETECA — Integraciones API</span></span>
+          </div>
+          <span>·</span>
+          <span>Zona horaria: CDT (UTC-6)</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-1 border-white/5 border-l hidden lg:block h-64 mx-auto"></div>
+
+      <div class="lg:col-span-4 reveal">
+        <div class="relative group">
+          <div
+            class="absolute -inset-1.5 bg-gradient-to-br from-brand-600 via-brand-400 to-brand-700 rounded-3xl blur-lg opacity-20 group-hover:opacity-35 transition duration-700">
+          </div>
+          <div class="relative glass-card rounded-3xl p-2 overflow-hidden">
+            <!-- Reemplaza esta URL con tu foto profesional -->
+            <img
+              class="rounded-2xl w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=800&auto=format&fit=crop"
+              alt="Juan Manuel Gonzalez — Senior Fullstack Engineer" />
+            <div class="absolute bottom-5 left-5 right-5 glass p-4 rounded-2xl">
+              <div class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-2">Stack actual</div>
+              <div class="flex flex-wrap gap-1.5">
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">React</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">Laravel</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">AWS
+                  S3</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/20 font-semibold">HubSpot</span>
+                <span
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/20 font-semibold">Ionic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
+  <!-- ─── PROYECTOS ─────────────────────────────────────────────── -->
+  <section id="proyectos" class="max-w-7xl mx-auto px-6 py-28 relative">
+    <span class="section-number">01</span>
+    <div class="reveal mb-14">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-4">
+        Metodología STAR
+      </div>
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">
+        Proyectos <span class="gradient-text">con Impacto</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl">Resultados medibles y cuantificados. Cada card muestra la métrica de
+        negocio que mejoró.</p>
+    </div>
+
+    <!-- Tech cloud filter — ★ FEATURE RECRUITERS LOVE ★ -->
+    <div class="reveal mb-6">
+      <p class="text-xs text-slate-600 font-bold uppercase tracking-widest mb-3">Filtrar por tecnología</p>
+      <div id="techCloud" class="flex flex-wrap gap-2 mb-4"></div>
+    </div>
+
+    <!-- Search + results count -->
+    <div class="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 w-full md:w-80">
+        <svg class="w-4 h-4 text-slate-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input id="filterInput" type="text" placeholder="Buscar proyecto o tecnología..."
+          class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none text-slate-200 placeholder-slate-600" />
+      </div>
+      <div class="flex items-center gap-4">
+        <span id="projectCount" class="text-xs text-slate-500 font-medium"></span>
+        <button id="clearFilter"
+          class="text-xs font-bold uppercase tracking-widest text-slate-600 hover:text-brand-400 transition-colors">Limpiar</button>
+      </div>
+    </div>
+
+    <div id="projectsGrid"
+      class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 dot-pattern rounded-3xl p-6 border border-white/5"></div>
+
+    <!-- Lightbox -->
+    <div id="lightbox"
+      class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/95 backdrop-blur-xl p-4">
+      <div class="relative w-full max-w-5xl">
+        <button id="lbClose"
+          class="absolute -top-12 right-0 text-white hover:text-brand-400 transition-colors flex items-center gap-2 font-bold uppercase tracking-widest text-xs">
+          Cerrar <span class="text-lg">✕</span>
+        </button>
+        <div id="lbContent" class="rounded-3xl overflow-hidden shadow-2xl bg-black aspect-video border border-white/10">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
+  <!-- ─── SKILLS ────────────────────────────────────────────────── -->
+  <section id="skills" class="py-28 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+      <div class="reveal relative">
+        <span class="section-number">02</span>
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-5">
+          Full-Cycle Engineer
+        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Dominio <span class="gradient-text">Técnico</span></h2>
+        <p class="text-slate-400 mb-10 leading-relaxed">
+          Arquitecturas full-cycle: desde <strong class="text-white">REST APIs y Webhooks</strong> hasta despliegue en
+          servidores Linux/Windows con <strong class="text-white">AWS S3</strong>.
+        </p>
+
+        <div class="space-y-7">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="font-bold text-sm uppercase tracking-widest text-slate-300">Frontend & Móvil</span>
+              <span class="text-brand-400 font-bold text-sm">92%</span>
+            </div>
+            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+              <div class="skill-bar skill-bar-blue" data-width="92"></div>
+            </div>
+            <p class="text-xs text-slate-600 mt-1.5">React · Ionic/Angular · TypeScript · Android & iOS</p>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="font-bold text-sm uppercase tracking-widest text-slate-300">Backend & APIs</span>
+              <span class="text-brand-400 font-bold text-sm">90%</span>
+            </div>
+            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+              <div class="skill-bar skill-bar-blue" data-width="90"></div>
+            </div>
+            <p class="text-xs text-slate-600 mt-1.5">PHP/Laravel · .NET · REST · JWT · Webhooks · SQL Server · MySQL</p>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="font-bold text-sm uppercase tracking-widest text-slate-300">Cloud & DevOps</span>
+              <span class="text-brand-400 font-bold text-sm">80%</span>
+            </div>
+            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+              <div class="skill-bar skill-bar-blue" data-width="80"></div>
+            </div>
+            <p class="text-xs text-slate-600 mt-1.5">AWS S3 · EC2 · Linux/Windows Servers · Nginx/IIS · GitHub Actions
+            </p>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="font-bold text-sm uppercase tracking-widest text-slate-300">CRM & Integraciones</span>
+              <span class="text-orange-400 font-bold text-sm">75%</span>
+            </div>
+            <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+              <div class="skill-bar skill-bar-orange" data-width="75"></div>
+            </div>
+            <p class="text-xs text-slate-600 mt-1.5">HubSpot CRM API v3 · Webhooks bidireccionales · ERP ↔ CRM sync</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 reveal">
+        <div class="glass-card p-6 rounded-3xl">
+          <div class="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 3h3m-3 3h3" />
+            </svg>
+          </div>
+          <h4 class="font-bold mb-2 text-sm">Mobile Native</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Ionic/Angular · Apps en App Store & Play Store · JWT auth ·
+            REST APIs.</p>
+        </div>
+        <div class="glass-card p-6  rounded-3xl mt-8">
+          <div class="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
+            </svg>
+          </div>
+          <h4 class="font-bold mb-2 text-sm">AWS S3 & DevOps</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">S3 Buckets · IAM Policies · Linux/Windows Servers · CI/CD.
+          </p>
+        </div>
+        <div class="glass-card p-6 rounded-3xl -mt-8">
+          <div class="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+            </svg>
+          </div>
+          <h4 class="font-bold mb-2 text-sm">Backend & Middleware</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">PHP/Laravel · .NET · REST APIs con Middleware JWT ·
+            Webhooks.</p>
+        </div>
+        <div class="glass-card p-6 rounded-3xl hubspot-gradient">
+          <div class="w-10 h-10 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-400 mb-4">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h4 class="font-bold mb-2 text-sm text-orange-300">HubSpot CRM</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">CRM ↔ ERP · API v3 · Webhooks bidireccionales · Leads sync.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
+  <!-- ─── ECOSISTEMA ───────────────────────────────────────────── -->
+  <section id="ecosistema" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="reveal mb-14 text-center relative">
+        <span class="section-number" style="left:50%;transform:translateX(-50%);right:auto">03</span>
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-4">
+          Infraestructura & Integraciones
+        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Ecosistema <span class="gradient-text">Cloud &
+            Business</span></h2>
+        <p class="text-slate-400 max-w-xl mx-auto">No solo código — infraestructura que escala y sistemas de negocio
+          conectados para eliminar fricción operativa.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 reveal">
+
+        <div class="glass-card rounded-3xl p-8 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 text-lg font-black border border-yellow-500/20 shrink-0">
+              S3</div>
+            <div>
+              <h3 class="font-bold leading-tight">AWS S3 Cloud Storage</h3>
+              <p class="text-xs text-slate-500 uppercase tracking-widest">Almacenamiento Escalable</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            <strong class="text-white">S3 Buckets</strong> para almacenamiento seguro de evidencias fotográficas y
+            documentos de flota. Políticas IAM por entorno (dev/prod), URLs pre-firmadas para acceso controlado y cero
+            servidor propio.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">S3
+              Buckets</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">IAM
+              Policies</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">Pre-signed
+              URLs</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-8 group hubspot-gradient">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-400 border border-orange-500/20 shrink-0">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold text-orange-200 leading-tight">HubSpot CRM Bridge</h3>
+              <p class="text-xs text-slate-500 uppercase tracking-widest">Integración Dev-Negocio</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            Conecté HubSpot CRM v3 con ERP interno via <strong class="text-white">REST API + Webhooks
+              bidireccionales</strong>. Un lead en HubSpot dispara automáticamente la orden de servicio. Cero datos
+            duplicados entre sistemas.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">HubSpot
+              API v3</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">Webhooks</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">CRM
+              Sync</span>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-3xl p-8 group">
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-400 border border-green-500/20 shrink-0">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-13.5 0v-1.5m13.5 1.5v-1.5m0-10.125a3 3 0 01.75 1.977m0 0v1.5m0-1.5h-13.5m0 0a3 3 0 01.75-1.977m0 0v-1.5m0 1.5v.375c0 .621.504 1.125 1.125 1.125h.375m12-4.5v.375c0 .621-.504 1.125-1.125 1.125h-.375m0 0h-11.25" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold leading-tight">Servidores Linux & Windows</h3>
+              <p class="text-xs text-slate-500 uppercase tracking-widest">Deployment & Infra</p>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5">
+            Administración de Linux (Ubuntu/CentOS) y Windows Server. Configuración de <strong class="text-white">Nginx,
+              Apache e IIS</strong>, gestión con PM2 y CI/CD con GitHub Actions. Deploy a producción sin intermediarios.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">Linux
+              Ubuntu</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">Nginx
+              / IIS</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
+  <!-- ─── EXPERIENCIA ───────────────────────────────────────────── -->
+  <section id="experiencia" class="max-w-7xl mx-auto px-6 py-28 relative">
+    <span class="section-number">04</span>
+    <div class="reveal text-center mb-20">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Trayectoria <span class="gradient-text">Profesional</span>
+      </h2>
+      <p class="text-slate-400">5 años construyendo sistemas críticos de negocio — del código a producción.</p>
+    </div>
+    <div class="max-w-4xl mx-auto space-y-10">
+
+      <div class="reveal flex gap-8">
+        <div class="flex flex-col items-center">
+          <div class="w-5 h-5 rounded-full bg-brand-500 ring-4 ring-brand-500/20 shrink-0 shadow-glow-brand"></div>
+          <div class="w-0.5 h-full timeline-line mt-3"></div>
+        </div>
+        <div class="pb-12 flex-1">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div class="text-brand-400 text-xs font-bold uppercase tracking-widest">Mar 2024 – Actual</div>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 font-bold">Actual</span>
+          </div>
+          <h4 class="text-2xl font-bold mb-1">Senior Fullstack Engineer</h4>
+          <div class="text-white/60 mb-4 font-medium">DETECA · Gómez Palacio, Dgo</div>
+          <p class="text-slate-400 leading-relaxed mb-4 text-sm">
+            Liderazgo técnico del ERP empresarial para gestión de flota de grúas. Arquitecturé la integración GPS con
+            <strong class="text-white">Webhooks REST en tiempo real</strong>, implementé almacenamiento seguro en
+            <strong class="text-white">AWS S3 Buckets</strong> y conecté <strong class="text-white">HubSpot CRM</strong>
+            con el ERP para automatizar el pipeline comercial.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">PHP/Laravel</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">React</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">AWS
+              S3</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">HubSpot
+              API</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">GPS
+              Webhooks</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">Linux
+              Server</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal flex gap-8">
+        <div class="flex flex-col items-center">
+          <div class="w-5 h-5 rounded-full bg-white/15 border border-white/20 shrink-0"></div>
+          <div class="w-0.5 h-full bg-gradient-to-b from-white/10 to-transparent mt-3"></div>
+        </div>
+        <div class="pb-12 flex-1">
+          <div class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">Nov 2021 – Ene 2024</div>
+          <h4 class="text-2xl font-bold mb-1">Fullstack Developer</h4>
+          <div class="text-white/60 mb-4 font-medium">Transportes Arlequín · Gómez Palacio, Dgo</div>
+          <p class="text-slate-400 leading-relaxed mb-4 text-sm">
+            Arquitecté sistema de rastreo GPS en tiempo real para flota de +50 unidades. Reduje el tiempo de despacho en
+            <strong class="text-white">40%</strong> con dashboards operativos en vivo. Desarrollé apps Ionic/Angular
+            para Android & iOS y mantuve módulos críticos del ERP en servidores Linux on-premise.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10 font-semibold">Ionic/Angular</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10 font-semibold">PHP/MySQL</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10 font-semibold">GPS
+              API</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10 font-semibold">Linux
+              Server</span>
+            <span
+              class="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10 font-semibold">REST
+              APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal flex gap-8">
+        <div class="flex flex-col items-center">
+          <div class="w-5 h-5 rounded-full bg-white/10 border border-white/15 shrink-0"></div>
+        </div>
+        <div class="flex-1">
+          <div class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">2019 – 2024</div>
+          <h4 class="text-2xl font-bold mb-1">Ingeniería en Sistemas Computacionales</h4>
+          <div class="text-white/60 mb-3 font-medium">Instituto Tecnológico de La Laguna</div>
+          <p class="text-slate-400 text-sm leading-relaxed">Formación sólida en algoritmos, arquitectura de sistemas
+            distribuidos, bases de datos relacionales y desarrollo de software.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
+  <!-- ─── CTA FINAL ────────────────────────────────────────────── -->
+  <section id="cta-final" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-950/70 via-slate-950 to-brand-950/70"></div>
+    <div class="hero-orb w-80 h-80 bg-brand-600/8 animate-float" style="top:20%;left:10%;"></div>
+    <div class="hero-orb w-56 h-56 bg-brand-500/6 animate-float-slow" style="bottom:15%;right:15%;"></div>
+
+    <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-6">
+        ¿Listo para construir algo grande?
+      </div>
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-6">
+        Tu próximo <span class="gradient-text">Senior Engineer</span>
+      </h2>
+      <p class="text-lg text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+        Combino expertise técnico con visión de negocio. No solo entrego código — entrego sistemas que <strong
+          class="text-white">reducen costos, escalan y conectan equipos</strong>.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mb-16">
+        <a href="https://github.com" target="_blank" rel="noreferrer"
+          class="group flex items-center gap-3 px-8 py-4 rounded-full bg-white text-slate-950 font-bold hover:bg-brand-400 transition-all hover:scale-105 shadow-glow-brand text-sm">
+          <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+          </svg>
+          Ver mi GitHub
+        </a>
+        <a href="#contacto"
+          class="flex items-center gap-3 px-8 py-4 rounded-full border border-brand-500/50 text-brand-400 font-bold hover:bg-brand-500/10 hover:border-brand-500 transition-all hover:scale-105 text-sm">
+          <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Agendar Entrevista Técnica
+        </a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-2xl font-extrabold text-white mb-1">REST</div>
+          <div class="text-xs text-slate-500 uppercase tracking-widest">APIs & Webhooks</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-2xl font-extrabold text-white mb-1">AWS</div>
+          <div class="text-xs text-slate-500 uppercase tracking-widest">S3 Cloud</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center hubspot-gradient">
+          <div class="text-2xl font-extrabold text-orange-300 mb-1">CRM</div>
+          <div class="text-xs text-slate-500 uppercase tracking-widest">HubSpot</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-2xl font-extrabold text-white mb-1">GPS</div>
+          <div class="text-xs text-slate-500 uppercase tracking-widest">Realtime API</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACTO ─────────────────────────────────────────────── -->
+  <section id="contacto" class="max-w-7xl mx-auto px-4 py-20">
+    <div class="text-center mb-12 reveal">
+      <h3 class="text-3xl md:text-4xl font-extrabold mb-2">¿Hablamos?</h3>
+      <p class="text-slate-400">Respondo en menos de 24 horas hábiles.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <!-- Info + copy buttons -->
+      <div class="reveal">
+        <div class="glass rounded-3xl p-7 space-y-5">
+          <div class="flex items-center justify-between group">
+            <div class="flex items-center gap-3 text-slate-300">
+              <span class="text-lg">📧</span>
+              <a class="hover:text-white transition-colors text-sm"
+                href="mailto:juan-gcz@hotmail.com">juan-gcz@hotmail.com</a>
+            </div>
+            <button onclick="copyText('juan-gcz@hotmail.com','Email')" title="Copiar email"
+              class="p-2 rounded-lg hover:bg-white/10 transition-colors text-slate-600 hover:text-brand-400 opacity-0 group-hover:opacity-100">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
+          </div>
+          <div class="flex items-center justify-between group">
+            <div class="flex items-center gap-3 text-slate-300">
+              <span class="text-lg">📱</span>
+              <a class="hover:text-white transition-colors text-sm" href="tel:+528711862385">+52 871 186 2385</a>
+            </div>
+            <button onclick="copyText('+528711862385','Teléfono')" title="Copiar teléfono"
+              class="p-2 rounded-lg hover:bg-white/10 transition-colors text-slate-600 hover:text-brand-400 opacity-0 group-hover:opacity-100">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
+          </div>
+          <div class="flex items-center gap-3 text-slate-300">
+            <span class="text-lg">📍</span><span class="text-sm">Gómez Palacio, Dgo · México</span>
+          </div>
+          <div class="border-t border-white/5 pt-4 flex gap-4">
+            <a href="www.linkedin.com/in/juan-manuel-gonzalez-cruz-84848b284" target="_blank" rel="noreferrer"
+              class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-bold hover:bg-blue-600/20 transition-all hover:border-blue-500/40">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/JuanGlezCZ" target="_blank" rel="noreferrer"
+              class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs font-bold hover:bg-white/10 transition-all hover:border-white/20">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact form -->
+      <form id="contactForm" class="reveal glass rounded-3xl p-7" action="https://formspree.io/f/xrgnaqkr"
+        method="POST">
+        <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
+        <input type="hidden" name="_subject" value="Contacto desde portafolio — Juan González" />
+        <div class="grid gap-5">
+          <label class="grid gap-1.5">
+            <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Nombre</span>
+            <input required name="nombre" placeholder="Tu nombre completo"
+              class="px-4 py-3 rounded-xl bg-slate-900 border border-white/10 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500/50 transition-all text-sm placeholder-slate-600" />
+          </label>
+          <label class="grid gap-1.5">
+            <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Email</span>
+            <input required type="email" name="email" placeholder="tu@empresa.com"
+              class="px-4 py-3 rounded-xl bg-slate-900 border border-white/10 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500/50 transition-all text-sm placeholder-slate-600" />
+          </label>
+          <label class="grid gap-1.5">
+            <div class="flex justify-between">
+              <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Mensaje</span>
+              <span id="charCount" class="text-xs text-slate-600">0 / 500</span>
+            </div>
+            <textarea required name="mensaje" rows="4" maxlength="500"
+              placeholder="Cuéntame sobre tu proyecto o la oportunidad..."
+              class="px-4 py-3 rounded-xl bg-slate-900 border border-white/10 focus:outline-none focus:ring-1 focus:ring-brand-500 focus:border-brand-500/50 transition-all text-sm placeholder-slate-600 resize-none"></textarea>
+          </label>
+          <button type="submit" id="submitBtn"
+            class="mt-1 px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-bold transition-all flex items-center justify-center gap-2 text-sm hover:scale-[1.02]">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+            </svg>
+            Enviar mensaje
+          </button>
+          <p id="formMsg" class="text-sm text-center text-slate-500"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+  <footer class="border-t border-white/5">
+    <div
+      class="max-w-7xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+      <p>© <span id="year"></span> Juan Manuel Gonzalez Cruz — Senior Fullstack Engineer.</p>
+      <div class="flex items-center gap-5 text-xs font-medium">
+        <a href="#home" class="hover:text-white transition-colors">inicio</a>
+        <a href="#proyectos" class="hover:text-white transition-colors">proyectos</a>
+        <a href="#ecosistema" class="hover:text-white transition-colors">ecosistema</a>
+        <a href="#contacto" class="hover:text-white transition-colors">contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=800" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Juan Manuel Gonzalez Cruz",
+    "jobTitle": "Senior Fullstack Engineer",
+    "email": "mailto:juan-gcz@hotmail.com",
+    "telephone": "+52-871-186-2385",
+    "address": {"@type": "PostalAddress", "addressLocality": "Gómez Palacio", "addressRegion": "Dgo", "addressCountry": "MX"},
+    "knowsAbout": ["React","Ionic","Angular","AWS S3","DevOps","Laravel","PHP",".NET","HubSpot CRM","REST APIs","Webhooks","MySQL","SQL Server","TypeScript","GPS Tracking","Symfony"],
+    "sameAs": ["https://github.com/JuanGlezCZ","https://www.linkedin.com/in/juan-manuel-gonzalez-cruz-84848b284/"]
+  }
+  </script>
+
+  <script>
+    // ═══════════════════════════════════════════════
+    // PROYECTOS — Metodología STAR con impacto real
+    // ═══════════════════════════════════════════════
+    const projects = [
+      {
+        title: 'ERP + Rastreo GPS en Tiempo Real',
+        about: '<strong class="text-white">+40% eficiencia operativa.</strong> Flota sin visibilidad → despachos manuales con retrasos críticos. Diseñé ERP end-to-end con Webhooks REST para GPS en vivo (sub-500ms de latencia), almacenamiento de evidencias en <em>AWS S3 Buckets</em> y app móvil Ionic para operadores en campo. Middleware JWT en todos los endpoints.',
+        tech: ['PHP', 'MySQL', 'Ionic', 'Angular', 'REST APIs', 'AWS S3', 'GPS Webhooks'],
+        img: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: '+40% eficiencia',
+        category: 'ERP · Cloud'
+      },
+      {
+        title: 'Integración CRM HubSpot ↔ ERP',
+        about: '<strong class="text-white">Pipeline 100% automatizado.</strong> Datos duplicados entre ventas y operaciones generaban errores y fricción. Conecté HubSpot CRM v3 con el ERP via REST + Webhooks bidireccionales. Un lead nuevo dispara automáticamente la orden de servicio. Cero entrada manual entre sistemas.',
+        tech: ['HubSpot API v3', 'Webhooks', 'PHP', 'REST', 'MySQL', 'Middleware'],
+        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: '0 datos duplicados',
+        category: 'CRM · Integrations'
+      },
+      {
+        title: 'Sistema de Requisiciones Web',
+        about: '<strong class="text-white">-60% en ciclo de compra.</strong> Proceso 100% manual por email sin trazabilidad. Digitalicé el flujo completo: solicitud → aprobación multi-nivel → notificaciones en tiempo real con PHP/MySQL. Auditoría completa con historial y responsables asignados.',
+        tech: ['PHP', 'MySQL', 'JavaScript', 'CSS3', 'REST APIs'],
+        img: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: '-60% tiempo',
+        category: 'Web · ERP'
+      },
+      {
+        title: 'App de Liquidaciones (Android/iOS)',
+        about: '<strong class="text-white">-80% consultas presenciales.</strong> Operadores viajaban físicamente a la oficina para consultar pagos. App Ionic/Angular con autenticación JWT, endpoints REST seguros y UI optimizada para campo. Disponibilidad 24/7 desde cualquier dispositivo.',
+        tech: ['Ionic', 'Angular', 'JWT', 'REST APIs', 'Android', 'iOS'],
+        img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: '-80% consultas',
+        category: 'Mobile · iOS · Android'
+      },
+      {
+        title: 'Dashboards BI — KPIs en Tiempo Real',
+        about: '<strong class="text-white">De semanas a horas.</strong> Gerencia tomaba decisiones con datos de semanas de antigüedad. Power BI conectado directamente a SQL Server on-premise con DAX avanzado para KPIs de flota, ventas y finanzas. Actualización horaria automatizada sin intervención manual.',
+        tech: ['Power BI', 'DAX', 'SQL Server', 'MySQL'],
+        img: 'https://images.unsplash.com/photo-1551281044-8d8d9041f0b5?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: 'Datos en tiempo real',
+        category: 'BI · Analytics'
+      },
+      {
+        title: 'Control de Acceso con QR',
+        about: '<strong class="text-white">100% trazabilidad digital.</strong> Control de acceso manual en papel sin auditoría posible. Sistema de generación y validación de QR en tiempo real con Ionic 6/Angular. Backend Slim Framework REST API. Eliminó registros físicos y habilitó auditorías digitales completas.',
+        tech: ['Ionic 6', 'Angular', 'Slim Framework', 'REST APIs', 'QR'],
+        img: 'https://images.unsplash.com/photo-1617196034183-421b4040ed20?q=80&w=1200&auto=format&fit=crop',
+        links: { demo: '#', repo: '#', video: '' },
+        impact: '100% trazabilidad',
+        category: 'Mobile · Security'
+      }
+    ];
+
+    // ═══════════════════════════════════════════════
+    // INIT — Theme, year, observers
+    // ═══════════════════════════════════════════════
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme
+    const toggle = document.getElementById('themeToggle');
+    const mobileToggle = document.getElementById('mobileThemeToggle');
+    const sun = document.getElementById('sun'), moon = document.getElementById('moon');
+    const mobileSun = document.getElementById('mobileSun'), mobileMoon = document.getElementById('mobileMoon');
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (stored === 'dark' || (!stored && prefersDark)) document.documentElement.classList.add('dark');
+
+    function syncThemeIcons() {
+      const dark = document.documentElement.classList.contains('dark');
+      [sun, mobileSun].forEach(el => el && el.classList.toggle('hidden', !dark));
+      [moon, mobileMoon].forEach(el => el && el.classList.toggle('hidden', dark));
+    }
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+      syncThemeIcons();
+    }
+    syncThemeIcons();
+    if (toggle) toggle.addEventListener('click', toggleTheme);
+    if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
+
+    // ═══════════════════════════════════════════════
+    // MOBILE MENU
+    // ═══════════════════════════════════════════════
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', e => { e.stopPropagation(); mobileMenu.classList.toggle('hidden'); });
+      document.addEventListener('click', e => {
+        if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target))
+          mobileMenu.classList.add('hidden');
+      });
+    }
+
+    // ═══════════════════════════════════════════════
+    // PROGRESS BAR + BACK TO TOP
+    // ═══════════════════════════════════════════════
+    const progressBar = document.getElementById('progressBar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ═══════════════════════════════════════════════
+    // INTERSECTION OBSERVER (reveal + counters + skill bars)
+    // ═══════════════════════════════════════════════
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Animated counters
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.counter').forEach(el => {
+          const target = parseInt(el.dataset.target, 10);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const start = performance.now();
+          const duration = 1800;
+          const tick = now => {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = prefix + Math.floor(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = prefix + target + suffix;
+          };
+          requestAnimationFrame(tick);
+        });
+        counterObs.unobserve(e.target);
+      });
+    }, { threshold: 0.5 });
+    const heroSection = document.getElementById('home');
+    if (heroSection) counterObs.observe(heroSection);
+
+    // Skill bar animation
+    const skillObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.querySelectorAll('.skill-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        skillObs.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) skillObs.observe(skillsSection);
+
+    // ═══════════════════════════════════════════════
+    // TYPEWRITER
+    // ═══════════════════════════════════════════════
+    (function initTypewriter() {
+      const el = document.getElementById('typewriter');
+      if (!el) return;
+      const words = [
+        'sistemas ERP empresariales',
+        'apps móviles iOS & Android',
+        'integraciones HubSpot CRM',
+        'arquitecturas cloud AWS',
+        'APIs REST & Webhooks',
+      ];
+      let wordIdx = 0, charIdx = 0, deleting = false;
+      function tick() {
+        const word = words[wordIdx % words.length];
+        charIdx = deleting ? charIdx - 1 : charIdx + 1;
+        el.textContent = word.substring(0, charIdx);
+        let delay = deleting ? 45 : 90;
+        if (!deleting && charIdx === word.length) { delay = 2200; deleting = true; }
+        else if (deleting && charIdx === 0) { deleting = false; wordIdx++; delay = 400; }
+        setTimeout(tick, delay);
+      }
+      setTimeout(tick, 800);
+    })();
+
+    // ═══════════════════════════════════════════════
+    // TECH CLOUD + PROJECTS RENDER + FILTER
+    // ═══════════════════════════════════════════════
+    const grid = document.getElementById('projectsGrid');
+    const input = document.getElementById('filterInput');
+    const clearBtn = document.getElementById('clearFilter');
+    const countEl = document.getElementById('projectCount');
+
+    function buildTechCloud() {
+      const cloud = document.getElementById('techCloud');
+      if (!cloud) return;
+      const freq = {};
+      projects.forEach(p => p.tech.forEach(t => { freq[t] = (freq[t] || 0) + 1; }));
+      Object.entries(freq).sort((a, b) => b[1] - a[1]).forEach(([tech, count]) => {
+        const btn = document.createElement('button');
+        btn.className = 'tech-filter-tag';
+        btn.dataset.tech = tech;
+        btn.innerHTML = `${tech} <span class="ml-1 opacity-35 font-normal text-[10px]">${count}</span>`;
+        btn.addEventListener('click', () => {
+          const isActive = btn.classList.contains('active-filter');
+          document.querySelectorAll('.tech-filter-tag').forEach(b => b.classList.remove('active-filter'));
+          input.value = isActive ? '' : tech;
+          if (!isActive) btn.classList.add('active-filter');
+          applyFilter();
+        });
+        cloud.appendChild(btn);
+      });
+    }
+
+    function render(list) {
+      grid.innerHTML = '';
+      if (countEl) countEl.textContent = `${list.length} proyecto${list.length !== 1 ? 's' : ''}`;
+      if (list.length === 0) {
+        grid.innerHTML = '<p class="col-span-3 text-center text-slate-500 py-16">Ningún proyecto coincide con ese filtro.</p>';
+        return;
+      }
+      list.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'reveal glass-card rounded-[2rem] overflow-hidden group cursor-default';
+        card.innerHTML = `
+          <div class="relative h-52 overflow-hidden">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="${p.img}" alt="${p.title}" loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop'">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2">
+              <div class="flex flex-wrap gap-1.5">
+                ${p.tech.slice(0, 3).map(t => `<span class="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-white">${t}</span>`).join('')}
+              </div>
+              ${p.impact ? `<span class="shrink-0 text-[9px] px-2.5 py-1 rounded-full bg-brand-500 text-slate-950 font-black uppercase tracking-wider backdrop-blur-md">${p.impact}</span>` : ''}
+            </div>
+          </div>
+          <div class="p-7">
+            <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest mb-2">${p.category || ''}</div>
+            <h4 class="font-bold text-lg mb-3 group-hover:text-brand-400 transition-colors leading-tight">${p.title}</h4>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">${p.about}</p>
+            <div class="flex items-center gap-4">
+              ${p.links.demo !== '#' ? `<a class="text-xs font-bold uppercase tracking-widest text-brand-400 hover:text-white transition-colors flex items-center gap-1" href="${p.links.demo}" target="_blank" rel="noreferrer">Demo <span>↗</span></a>` : ''}
+              ${p.links.repo !== '#' ? `<a class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors" href="${p.links.repo}" target="_blank" rel="noreferrer">Código</a>` : ''}
+              ${p.links.video ? `<button class="text-xs font-bold uppercase tracking-widest text-brand-400 hover:text-white transition-colors video-btn" data-video="${p.links.video}">▶ Video</button>` : ''}
+            </div>
+          </div>`;
+
+        // 3D tilt effect
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const rx = (e.clientY - r.top - r.height / 2) / 28;
+          const ry = (r.width / 2 - (e.clientX - r.left)) / 28;
+          card.style.transform = `perspective(1100px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+
+        grid.appendChild(card);
+        obs.observe(card);
+      });
+
+      document.querySelectorAll('.video-btn').forEach(btn => {
+        btn.addEventListener('click', () => openLightbox(`<iframe src="${btn.dataset.video}" title="demo" class="w-full h-full" allowfullscreen></iframe>`));
+      });
+    }
+
+    function applyFilter() {
+      const q = input.value.toLowerCase().trim();
+      if (!q) {
+        document.querySelectorAll('.tech-filter-tag').forEach(b => b.classList.remove('active-filter'));
+        return render(projects);
+      }
+      render(projects.filter(p =>
+        p.tech.some(t => t.toLowerCase().includes(q)) ||
+        p.title.toLowerCase().includes(q) ||
+        p.about.toLowerCase().includes(q)
+      ));
+    }
+
+    input.addEventListener('input', applyFilter);
+    clearBtn.addEventListener('click', () => { input.value = ''; applyFilter(); });
+    buildTechCloud();
+    render(projects);
+
+    // ═══════════════════════════════════════════════
+    // LIGHTBOX
+    // ═══════════════════════════════════════════════
+    function openLightbox(inner) {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lbContent').innerHTML = inner;
+      lb.classList.remove('hidden'); lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    document.getElementById('lbClose').addEventListener('click', () => {
+      const lb = document.getElementById('lightbox');
+      document.getElementById('lbContent').innerHTML = '';
+      lb.classList.add('hidden'); lb.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target.id === 'lightbox') document.getElementById('lbClose').click();
+    });
+
+    // ═══════════════════════════════════════════════
+    // TOAST + CLIPBOARD
+    // ═══════════════════════════════════════════════
+    function showToast(msg, type = 'success') {
+      const t = document.createElement('div');
+      const colors = type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
+      t.className = `fixed bottom-20 right-6 z-[9999] px-5 py-3 rounded-2xl text-sm font-semibold shadow-premium pointer-events-none ${colors}`;
+      t.style.animation = 'toastIn 0.3s ease forwards';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => {
+        t.style.animation = 'toastOut 0.3s ease forwards';
+        setTimeout(() => t.remove(), 300);
+      }, 2500);
+    }
+
+    function copyText(text, label) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+          .then(() => showToast(`${label} copiado al portapapeles ✓`))
+          .catch(() => showToast('No se pudo copiar', 'error'));
+      } else {
+        // Fallback for older browsers
+        const el = document.createElement('textarea');
+        el.value = text; el.style.position = 'fixed'; el.style.opacity = '0';
+        document.body.appendChild(el); el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        showToast(`${label} copiado ✓`);
+      }
+    }
+
+    // ═══════════════════════════════════════════════
+    // CONTACT FORM
+    // ═══════════════════════════════════════════════
+    const contactForm = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+    const submitBtn = document.getElementById('submitBtn');
+    const textarea = contactForm ? contactForm.querySelector('textarea') : null;
+    const charCount = document.getElementById('charCount');
+
+    if (textarea && charCount) {
+      textarea.addEventListener('input', () => {
+        charCount.textContent = `${textarea.value.length} / 500`;
+        charCount.className = `text-xs ${textarea.value.length > 450 ? 'text-orange-400' : 'text-slate-600'}`;
+      });
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const originalHtml = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+        submitBtn.disabled = true;
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            formMsg.innerHTML = '✅ <strong>¡Mensaje enviado!</strong> Te responderé en menos de 24 horas.';
+            formMsg.className = 'text-sm text-center text-green-400 font-medium';
+            contactForm.reset();
+            charCount && (charCount.textContent = '0 / 500');
+            showToast('¡Mensaje enviado exitosamente! ✓');
+          } else {
+            throw new Error('error');
+          }
+        } catch {
+          formMsg.innerHTML = '❌ No se pudo enviar. Escríbeme directamente a <a class="underline" href="mailto:juan-gcz@hotmail.com">juan-gcz@hotmail.com</a>';
+          formMsg.className = 'text-sm text-center text-red-400';
+          showToast('Error al enviar. Intenta por email.', 'error');
+        } finally {
+          submitBtn.innerHTML = originalHtml;
+          submitBtn.disabled = false;
+          setTimeout(() => {
+            formMsg.textContent = '';
+            formMsg.className = 'text-sm text-center text-slate-500';
+          }, 8000);
+        }
+      });
+    }
+
+    // ═══════════════════════════════════════════════
+    // SMOOTH SCROLL
+    // ═══════════════════════════════════════════════
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        const id = this.getAttribute('href');
+        if (id === '#') return;
+        const target = document.querySelector(id);
+        if (target) {
+          mobileMenu && mobileMenu.classList.add('hidden');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // ═══════════════════════════════════════════════
+    // JSON-LD per project
+    // ═══════════════════════════════════════════════
+    try {
+      const items = projects.map(p => ({
+        '@type': 'SoftwareApplication', 'name': p.title,
+        'description': p.about.replace(/<[^>]*>/g, ''),
+        'applicationCategory': 'BusinessApplication',
+        'operatingSystem': 'Web, Android, iOS',
+        'url': p.links.demo !== '#' ? p.links.demo : window.location.href,
+        'screenshot': p.img
+      }));
+      const s = document.createElement('script');
+      s.type = 'application/ld+json';
+      s.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': items });
+      document.body.appendChild(s);
+    } catch (e) { }
+  </script>
+
+  <!-- Supabase Visitor Tracking -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      const supabaseUrl = 'https://eoxaedvoqegfywciqiuq.supabase.co';
+      const supabaseKey = 'sb_publishable_NyBD80BuxZN_cvhMiUTdmA_5K6IcMGB';
+      const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+      async function trackVisit() {
+        try {
+          // Get IP address via ipify
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          if (!ipRes.ok) throw new Error('IP fetch failed');
+          const { ip } = await ipRes.json();
+
+          const { error } = await _supabase
+            .from('visitor_logs')
+            .insert([
+              {
+                ip_address: ip,
+                user_agent: navigator.userAgent,
+                page_path: window.location.pathname
+              }
+            ]);
+
+          if (error) console.error('Supabase error:', error.message);
+        } catch (err) {
+          console.error('Tracking error:', err);
+        }
+      }
+
+      // Track on load
+      if (document.readyState === 'complete') {
+        trackVisit();
+      } else {
+        window.addEventListener('load', trackVisit);
+      }
+    })();
+  </script>
+</body>
+
+</html>

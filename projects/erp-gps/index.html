@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ERP + Rastreo GPS en Tiempo Real — Juan González</title>
+  <meta name="description" content="Case study: ERP empresarial con rastreo GPS en tiempo real, AWS S3 y app móvil Ionic. +40% eficiencia operativa." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif'], heading: ['Outfit', 'sans-serif'] },
+          colors: { brand: { 400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7' }, slate: { 950: '#020617' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; }
+    .glass { backdrop-filter: blur(14px) saturate(180%); background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card { background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0) 100%); border: 1px solid rgba(255,255,255,0.1); transition: all 0.35s cubic-bezier(0.4,0,0.2,1); }
+    .gradient-text { background: linear-gradient(135deg, #ffffff 0%, #93c5fd 25%, #38bdf8 55%, #0ea5e9 80%, #0284c7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .mesh { position: fixed; inset: 0; z-index: -1; background-color: #020617; background-image: radial-gradient(at 15% 15%, hsla(202,100%,22%,0.18) 0, transparent 55%), radial-gradient(at 85% 5%, hsla(210,100%,18%,0.12) 0, transparent 50%); }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.22,1,0.36,1); }
+    .reveal.show { opacity: 1; transform: translateY(0); }
+    /* Placeholder screenshot */
+    .screenshot-placeholder { background: linear-gradient(135deg, rgba(14,165,233,0.08) 0%, rgba(2,6,23,0.9) 100%); border: 1px solid rgba(14,165,233,0.15); border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: rgba(148,163,184,0.4); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-200 font-sans antialiased overflow-x-hidden">
+  <div class="mesh"></div>
+
+  <!-- ── Nav ───────────────────────────────────────────────────── -->
+  <header class="fixed top-0 inset-x-0 z-50 flex justify-between items-center px-6 py-4">
+    <a href="../../index.html"
+      class="glass flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold text-slate-400 hover:text-white transition-colors">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Portafolio
+    </a>
+    <span class="glass px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest text-green-400 border-green-500/20">
+      En producción
+    </span>
+  </header>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="pt-32 pb-20 max-w-5xl mx-auto px-6">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-6">
+        ERP · GPS · Cloud · Mobile
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        ERP + Rastreo GPS<br><span class="gradient-text">en Tiempo Real</span>
+      </h1>
+      <p class="text-slate-400 text-lg max-w-2xl mb-8 leading-relaxed">
+        Sistema empresarial end-to-end para gestión de flota de grúas: rastreo GPS con latencia sub-500ms, almacenamiento en AWS S3 y app móvil para operadores en campo.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-12">
+        <span class="px-4 py-2 rounded-full bg-brand-500 text-slate-950 font-black text-sm">+40% eficiencia operativa</span>
+        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 font-bold text-sm">Sub-500ms latencia GPS</span>
+        <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 font-bold text-sm">AWS S3 Storage</span>
+      </div>
+
+      <!-- Cover image -->
+      <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl mb-6">
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1400&auto=format&fit=crop"
+          alt="ERP GPS Dashboard" class="w-full h-72 object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contenido principal ───────────────────────────────────── -->
+  <main class="max-w-5xl mx-auto px-6 pb-24 space-y-20">
+
+    <!-- Problema / Solución -->
+    <div class="grid md:grid-cols-2 gap-8 reveal">
+      <div class="glass-card rounded-3xl p-8">
+        <div class="w-10 h-10 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-400 mb-5">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-3 text-red-300">El Problema</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Flota de grúas sin visibilidad en tiempo real. Despachos manuales por radio/teléfono causaban retrasos críticos, evidencias fotográficas perdidas en WhatsApp y cero trazabilidad de servicios.
+        </p>
+      </div>
+      <div class="glass-card rounded-3xl p-8">
+        <div class="w-10 h-10 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-400 mb-5">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-3 text-green-300">La Solución</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          ERP end-to-end con Webhooks REST para posicionamiento GPS en vivo, almacenamiento seguro de evidencias en AWS S3 Buckets y app Ionic para operadores. Todo con autenticación JWT y middleware centralizado.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stack técnico -->
+    <div class="reveal">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-8">Stack <span class="gradient-text">Técnico</span></h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-brand-400 font-black text-lg mb-1">PHP</div>
+          <div class="text-xs text-slate-500">Laravel Backend</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-brand-400 font-black text-lg mb-1">Ionic</div>
+          <div class="text-xs text-slate-500">App Móvil</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-yellow-400 font-black text-lg mb-1">AWS S3</div>
+          <div class="text-xs text-slate-500">Cloud Storage</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-brand-400 font-black text-lg mb-1">MySQL</div>
+          <div class="text-xs text-slate-500">Base de Datos</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-green-400 font-black text-lg mb-1">GPS</div>
+          <div class="text-xs text-slate-500">Webhooks REST</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-purple-400 font-black text-lg mb-1">Angular</div>
+          <div class="text-xs text-slate-500">Frontend</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-orange-400 font-black text-lg mb-1">JWT</div>
+          <div class="text-xs text-slate-500">Auth Middleware</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <div class="text-slate-300 font-black text-lg mb-1">Linux</div>
+          <div class="text-xs text-slate-500">Nginx Server</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screenshots (placeholders) -->
+    <div class="reveal">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-8">Capturas de <span class="gradient-text">Pantalla</span></h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="screenshot-placeholder h-52">Módulo GPS — Mapa en Tiempo Real</div>
+        <div class="screenshot-placeholder h-52">Dashboard de Flota</div>
+        <div class="screenshot-placeholder h-52">App Móvil — Vista Operador</div>
+        <div class="screenshot-placeholder h-52">AWS S3 — Gestión de Evidencias</div>
+      </div>
+      <p class="text-xs text-slate-600 mt-4 text-center">* Capturas reales omitidas por confidencialidad (NDA empresarial)</p>
+    </div>
+
+    <!-- Resultados -->
+    <div class="reveal">
+      <h2 class="text-2xl md:text-3xl font-extrabold mb-8">Resultados <span class="gradient-text">Medibles</span></h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass-card rounded-3xl p-7 text-center">
+          <div class="text-5xl font-extrabold text-white mb-2">+40%</div>
+          <div class="text-sm text-slate-400">Eficiencia operativa en despacho de unidades</div>
+        </div>
+        <div class="glass-card rounded-3xl p-7 text-center">
+          <div class="text-5xl font-extrabold text-brand-400 mb-2">&lt;500ms</div>
+          <div class="text-sm text-slate-400">Latencia en actualización de posición GPS</div>
+        </div>
+        <div class="glass-card rounded-3xl p-7 text-center">
+          <div class="text-5xl font-extrabold text-green-400 mb-2">100%</div>
+          <div class="text-sm text-slate-400">Trazabilidad digital de servicios y evidencias</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal text-center pt-8 border-t border-white/5">
+      <p class="text-slate-400 mb-6">¿Te interesa este tipo de solución para tu empresa?</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="../../index.html#contacto"
+          class="px-8 py-4 rounded-full bg-brand-500 text-slate-950 font-bold hover:bg-brand-400 transition-all hover:scale-105 text-sm">
+          Hablemos del proyecto
+        </a>
+        <a href="../../index.html#proyectos"
+          class="px-8 py-4 rounded-full border border-white/10 hover:bg-white/5 font-bold transition-all text-sm">
+          Ver más proyectos
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    document.documentElement.classList.add('dark');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

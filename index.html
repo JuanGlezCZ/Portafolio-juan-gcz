@@ -6,19 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0ea5e9" />
   <meta name="description"
-    content="Juan Manuel Gonzalez Cruz — Senior Fullstack Engineer con +5 años. ERP empresarial, apps móviles iOS/Android, integraciones HubSpot CRM y DevOps con AWS S3. React, Laravel, .NET, Ionic." />
-  <meta property="og:title" content="Juan Manuel Gonzalez — Senior Fullstack Engineer" />
+    content="Juan Manuel Gonzalez Cruz — Backend & Integration Engineer con +5 años. Agentes IA con OpenAI, automatización con n8n, ERP empresarial, HubSpot CRM OAuth, apps móviles iOS/Android y AWS S3. React, Laravel, PHP, Python." />
+  <meta name="keywords" content="Backend Engineer, Integration Engineer, IA Aplicada, OpenAI API, n8n Automatización, Agentes IA, HubSpot CRM API, OAuth, Webhooks, ERP, React, Laravel, PHP, Python, Ionic, Angular, AWS S3, MySQL, SQL Server, GPS Tracking, REST API, Gómez Palacio, México, Remoto" />
+  <meta name="author" content="Juan Manuel Gonzalez Cruz" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Juan Manuel Gonzalez — Backend & Integration Engineer | IA · n8n · HubSpot · AWS" />
   <meta property="og:description"
-    content="Soluciones de alto impacto: ERP + GPS en tiempo real, HubSpot CRM, AWS S3, apps móviles. +5 años · React · Laravel · Ionic." />
+    content="Agentes IA con OpenAI, automatización n8n, HubSpot CRM OAuth, ERP + GPS en tiempo real, AWS S3. +5 años. Disponible para trabajar." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=1200" />
+  <meta property="og:image" content="assets/foto-juan.png" />
+  <meta property="og:locale" content="es_MX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Juan Manuel Gonzalez — Backend & Integration Engineer | IA Aplicada" />
+  <meta name="twitter:description" content="+5 años · Agentes IA · n8n · HubSpot CRM · ERP · AWS S3. Disponible para proyectos." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap"
     rel="stylesheet">
-  <title>Juan Manuel Gonzalez | Senior Fullstack Engineer</title>
+  <title>Juan Manuel Gonzalez | Backend & Integration Engineer · IA · n8n · HubSpot</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="data/projects.js"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -319,7 +327,102 @@
       filter: blur(70px);
       pointer-events: none;
     }
+
+    /* ── Tech marquee ───────────────────────────────────── */
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      animation: marquee 28s linear infinite;
+      display: inline-flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .animate-marquee:hover { animation-play-state: paused; }
+    .tech-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      cursor: default;
+    }
+    .tech-icon-item:hover { opacity: 1; transform: translateY(-4px); }
+    .tech-icon-item span {
+      font-size: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      white-space: nowrap;
+    }
+
+    /* ── Page loader ─────────────────────────────────────── */
+    #page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #020617;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #page-loader.loaded { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: white;
+    }
+    .loader-logo span { color: #38bdf8; }
+    .loader-bar-wrap {
+      width: 160px;
+      height: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+      border-radius: 9999px;
+      animation: loaderFill 1.2s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes loaderFill {
+      to { width: 100%; }
+    }
+
+    /* ── Particles canvas ────────────────────────────────── */
+    #particles-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── Diferenciadores ─────────────────────────────────── */
+    .diferenciador-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .diferenciador-card:hover {
+      border-color: rgba(14,165,233,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4), 0 0 20px -5px rgba(14,165,233,0.1);
+    }
   </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' rx='48' fill='%230ea5e9'/%3E%3Cpath d='M64 168c48 24 80-24 128 0' stroke='white' stroke-width='16' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='88' cy='96' r='20' fill='white'/%3E%3C/svg%3E" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,9 +431,24 @@
 <body
   class="bg-slate-950 text-slate-200 font-sans selection:bg-brand-500/30 selection:text-white antialiased overflow-x-hidden">
 
+  <!-- Page Loader -->
+  <div id="page-loader">
+    <div class="loader-logo">juan<span>.dev</span></div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  </div>
+
   <div class="noise"></div>
   <div class="mesh-gradient"></div>
   <div class="progress-bar" id="progressBar"></div>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/528711862385?text=Hola%20Juan%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noreferrer" title="Contactar por WhatsApp"
+    class="fixed bottom-8 left-8 z-50 flex items-center gap-2 px-4 py-3 rounded-full bg-green-500 text-white shadow-lg hover:bg-green-400 hover:scale-110 transition-all duration-200 font-bold text-sm">
+    <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="hidden sm:inline">WhatsApp</span>
+  </a>
 
   <!-- Back to top -->
   <button id="backToTop" title="Volver arriba"
@@ -426,6 +544,7 @@
 
   <!-- ─── HERO ─────────────────────────────────────────────────── -->
   <section id="home" class="min-h-screen flex items-center pt-24 relative overflow-hidden">
+    <canvas id="particles-canvas"></canvas>
     <!-- Animated background orbs -->
     <div class="hero-orb w-96 h-96 bg-brand-600/10 animate-float" style="top:10%;left:5%;animation-delay:0s"></div>
     <div class="hero-orb w-64 h-64 bg-brand-500/8 animate-float-slow" style="top:40%;right:8%;animation-delay:-3s">
@@ -449,8 +568,8 @@
         </div>
 
         <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.08] mb-5">
-          Senior<br>
-          <span class="gradient-text">Fullstack</span><br>
+          Backend &<br>
+          <span class="gradient-text">Integration</span><br>
           <span class="text-white/90">Engineer</span>
         </h1>
 
@@ -460,8 +579,8 @@
             class="type-cursor"></span>
         </p>
         <p class="text-sm text-slate-500 max-w-xl mb-10 leading-relaxed">
-          +5 años construyendo ERPs empresariales, apps móviles multiplataforma y arquitecturas cloud. Enfoque en
-          <strong class="text-slate-300">impacto medible de negocio</strong>.
+          +5 años construyendo ERPs empresariales, agentes de IA y automatizaciones que eliminan trabajo manual.
+          Enfoque en <strong class="text-slate-300">impacto medible de negocio</strong>.
         </p>
 
         <!-- CTAs -->
@@ -510,7 +629,7 @@
         <div class="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center gap-4 text-xs text-slate-500">
           <div class="flex items-center gap-2">
             <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-            <span>Actualmente en: <span class="text-slate-300 font-medium">DETECA — Integraciones API</span></span>
+            <span>Actualmente en: <span class="text-slate-300 font-medium">DETECA — IA & Automatización</span></span>
           </div>
           <span>·</span>
           <span>Zona horaria: CDT (UTC-6)</span>
@@ -525,29 +644,76 @@
             class="absolute -inset-1.5 bg-gradient-to-br from-brand-600 via-brand-400 to-brand-700 rounded-3xl blur-lg opacity-20 group-hover:opacity-35 transition duration-700">
           </div>
           <div class="relative glass-card rounded-3xl p-2 overflow-hidden">
-            <!-- Reemplaza esta URL con tu foto profesional -->
             <img
-              class="rounded-2xl w-full aspect-[4/5] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-              src="https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=800&auto=format&fit=crop"
-              alt="Juan Manuel Gonzalez — Senior Fullstack Engineer" />
-            <div class="absolute bottom-5 left-5 right-5 glass p-4 rounded-2xl">
-              <div class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-2">Stack actual</div>
+              class="rounded-2xl w-full aspect-[4/5] object-cover object-top transition-all duration-700"
+              src="assets/foto-juan.png"
+              alt="Juan Manuel Gonzalez Cruz — Backend & Integration Engineer"
+              onerror="this.src='https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=800&auto=format&fit=crop'" />
+            <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl" style="background:rgba(2,6,23,0.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.10);">
+              <div class="text-xs text-slate-400 uppercase tracking-widest font-bold mb-2">Stack actual</div>
               <div class="flex flex-wrap gap-1.5">
-                <span
-                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">React</span>
-                <span
-                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">Laravel</span>
-                <span
-                  class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/20 font-semibold">AWS
-                  S3</span>
-                <span
-                  class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-300 border border-orange-500/20 font-semibold">HubSpot</span>
-                <span
-                  class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/20 font-semibold">Ionic</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/25 text-green-300 border border-green-500/30 font-semibold">OpenAI API</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/25 text-purple-300 border border-purple-500/30 font-semibold">n8n</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/25 text-brand-300 border border-brand-500/30 font-semibold">Laravel</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/25 text-orange-300 border border-orange-500/30 font-semibold">HubSpot</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/25 text-yellow-300 border border-yellow-500/30 font-semibold">AWS S3</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TECH STACK MARQUEE ──────────────────────────────────── -->
+  <section class="py-10 overflow-hidden border-y border-white/5 bg-white/[0.015]">
+    <p class="text-center text-[10px] text-slate-600 uppercase tracking-[0.25em] font-bold mb-6">Stack tecnológico</p>
+    <div class="relative flex overflow-x-hidden">
+      <div class="flex gap-10 items-center animate-marquee whitespace-nowrap pr-10">
+        <div class="tech-icon-item"><i class="devicon-openai-plain text-4xl text-slate-200"></i><span>OpenAI</span></div>
+        <div class="tech-icon-item"><i class="devicon-python-plain colored text-4xl"></i><span>Python</span></div>
+        <div class="tech-icon-item"><i class="devicon-php-plain colored text-4xl"></i><span>PHP</span></div>
+        <div class="tech-icon-item"><i class="devicon-laravel-original colored text-4xl"></i><span>Laravel</span></div>
+        <div class="tech-icon-item"><i class="devicon-react-original colored text-4xl"></i><span>React</span></div>
+        <div class="tech-icon-item"><i class="devicon-mysql-original colored text-4xl"></i><span>MySQL</span></div>
+        <div class="tech-icon-item"><i class="devicon-microsoftsqlserver-plain colored text-4xl"></i><span>SQL Server</span></div>
+        <div class="tech-icon-item"><i class="devicon-angularjs-plain colored text-4xl"></i><span>Angular</span></div>
+        <div class="tech-icon-item"><i class="devicon-ionic-original colored text-4xl"></i><span>Ionic</span></div>
+        <div class="tech-icon-item"><i class="devicon-amazonwebservices-plain-wordmark colored text-4xl"></i><span>AWS</span></div>
+        <div class="tech-icon-item"><i class="devicon-typescript-plain colored text-4xl"></i><span>TypeScript</span></div>
+        <div class="tech-icon-item"><i class="devicon-javascript-plain colored text-4xl"></i><span>JavaScript</span></div>
+        <div class="tech-icon-item"><i class="devicon-java-plain colored text-4xl"></i><span>Java</span></div>
+        <div class="tech-icon-item"><i class="devicon-csharp-plain colored text-4xl"></i><span>C#</span></div>
+        <div class="tech-icon-item"><i class="devicon-linux-plain text-4xl text-slate-300"></i><span>Linux</span></div>
+        <div class="tech-icon-item"><i class="devicon-nginx-original colored text-4xl"></i><span>Nginx</span></div>
+        <div class="tech-icon-item"><i class="devicon-git-plain colored text-4xl"></i><span>Git</span></div>
+        <div class="tech-icon-item"><i class="devicon-dotnetcore-plain colored text-4xl"></i><span>.NET</span></div>
+        <div class="tech-icon-item"><i class="devicon-android-plain colored text-4xl"></i><span>Android</span></div>
+        <div class="tech-icon-item"><i class="devicon-apple-original text-4xl text-slate-300"></i><span>iOS</span></div>
+      </div>
+      <!-- duplicado para loop infinito -->
+      <div class="flex gap-10 items-center animate-marquee whitespace-nowrap pr-10" aria-hidden="true">
+        <div class="tech-icon-item"><i class="devicon-openai-plain text-4xl text-slate-200"></i><span>OpenAI</span></div>
+        <div class="tech-icon-item"><i class="devicon-python-plain colored text-4xl"></i><span>Python</span></div>
+        <div class="tech-icon-item"><i class="devicon-php-plain colored text-4xl"></i><span>PHP</span></div>
+        <div class="tech-icon-item"><i class="devicon-laravel-original colored text-4xl"></i><span>Laravel</span></div>
+        <div class="tech-icon-item"><i class="devicon-react-original colored text-4xl"></i><span>React</span></div>
+        <div class="tech-icon-item"><i class="devicon-mysql-original colored text-4xl"></i><span>MySQL</span></div>
+        <div class="tech-icon-item"><i class="devicon-microsoftsqlserver-plain colored text-4xl"></i><span>SQL Server</span></div>
+        <div class="tech-icon-item"><i class="devicon-angularjs-plain colored text-4xl"></i><span>Angular</span></div>
+        <div class="tech-icon-item"><i class="devicon-ionic-original colored text-4xl"></i><span>Ionic</span></div>
+        <div class="tech-icon-item"><i class="devicon-amazonwebservices-plain-wordmark colored text-4xl"></i><span>AWS</span></div>
+        <div class="tech-icon-item"><i class="devicon-typescript-plain colored text-4xl"></i><span>TypeScript</span></div>
+        <div class="tech-icon-item"><i class="devicon-javascript-plain colored text-4xl"></i><span>JavaScript</span></div>
+        <div class="tech-icon-item"><i class="devicon-java-plain colored text-4xl"></i><span>Java</span></div>
+        <div class="tech-icon-item"><i class="devicon-csharp-plain colored text-4xl"></i><span>C#</span></div>
+        <div class="tech-icon-item"><i class="devicon-linux-plain text-4xl text-slate-300"></i><span>Linux</span></div>
+        <div class="tech-icon-item"><i class="devicon-nginx-original colored text-4xl"></i><span>Nginx</span></div>
+        <div class="tech-icon-item"><i class="devicon-git-plain colored text-4xl"></i><span>Git</span></div>
+        <div class="tech-icon-item"><i class="devicon-dotnetcore-plain colored text-4xl"></i><span>.NET</span></div>
+        <div class="tech-icon-item"><i class="devicon-android-plain colored text-4xl"></i><span>Android</span></div>
+        <div class="tech-icon-item"><i class="devicon-apple-original text-4xl text-slate-300"></i><span>iOS</span></div>
+        <div class="tech-icon-item"><i class="devicon-tailwindcss-original colored text-4xl"></i><span>Tailwind</span></div>
       </div>
     </div>
   </section>
@@ -569,10 +735,12 @@
         negocio que mejoró.</p>
     </div>
 
-    <!-- Tech cloud filter — ★ FEATURE RECRUITERS LOVE ★ -->
+    <!-- ── Proyecto Destacado ─────────────────────────────────── -->
+    <div id="featuredProject" class="reveal mb-16"></div>
+
+    <!-- ── Tabs de categoría ──────────────────────────────────── -->
     <div class="reveal mb-6">
-      <p class="text-xs text-slate-600 font-bold uppercase tracking-widest mb-3">Filtrar por tecnología</p>
-      <div id="techCloud" class="flex flex-wrap gap-2 mb-4"></div>
+      <div id="categoryTabs" class="flex flex-wrap gap-2 mb-6"></div>
     </div>
 
     <!-- Search + results count -->
@@ -721,6 +889,82 @@
 
   <div class="divider max-w-7xl mx-auto"></div>
 
+  <!-- ─── POR QUÉ CONTRATARME ──────────────────────────────────── -->
+  <section class="max-w-7xl mx-auto px-6 py-24 relative">
+    <div class="reveal text-center mb-14">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-bold tracking-widest uppercase mb-4">
+        Propuesta de Valor
+      </div>
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4">¿Por qué <span class="gradient-text">contratarme?</span></h2>
+      <p class="text-slate-400 max-w-xl mx-auto">No solo escribo código. Entiendo el negocio, diseño la solución y la llevo a producción.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+      <div class="diferenciador-card group">
+        <div class="w-12 h-12 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 mb-5 group-hover:bg-brand-500/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Entrego en tiempo real</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">5+ años construyendo sistemas a producción sin interrupciones. Arquitecturas que aguantan el primer día de uso real, con cero excusas.</p>
+      </div>
+
+      <div class="diferenciador-card group">
+        <div class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center text-green-400 mb-5 group-hover:bg-green-500/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">ROI medible</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Cada proyecto tiene métrica de negocio: <strong class="text-white">+40% eficiencia</strong>, <strong class="text-white">-80% consultas presenciales</strong>, <strong class="text-white">0 datos duplicados</strong>. El código importa, el resultado más.</p>
+      </div>
+
+      <div class="diferenciador-card group">
+        <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-5 group-hover:bg-purple-500/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 8.25h3m-3 3h3m-3 3h3"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Full-Cycle: del diseño al deploy</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Frontend, backend, base de datos, servidor Linux, CI/CD. Sin depender de otros equipos para llegar a producción. Un punto de contacto, responsabilidad total.</p>
+      </div>
+
+      <div class="diferenciador-card group">
+        <div class="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-400 mb-5 group-hover:bg-orange-500/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Integraciones sin fricción</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">HubSpot, GPS APIs, AWS S3, sistemas legacy. Si tiene una API, puedo conectarlo. Especialista en puentes entre sistemas que "nunca hablan entre sí".</p>
+      </div>
+
+      <div class="diferenciador-card group">
+        <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 mb-5 group-hover:bg-yellow-500/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15zM21 21l-5.197-5.197"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Disponible y responsivo</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Remoto / híbrido desde Gómez Palacio. Respondo en menos de 2 horas en horario laboral. Comunicación clara, sin ambigüedades técnicas.</p>
+      </div>
+
+      <div class="diferenciador-card group" style="background: linear-gradient(135deg, rgba(14,165,233,0.07) 0%, rgba(14,165,233,0) 100%); border-color: rgba(14,165,233,0.2);">
+        <div class="w-12 h-12 rounded-2xl bg-brand-500/15 flex items-center justify-center text-brand-400 mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2 text-brand-300">Ing. en Sistemas + 5 años reales</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Titulado del Instituto Tecnológico de La Laguna. Cada año de carrera respaldado por proyectos en producción en empresas reales. Teoría + práctica.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider max-w-7xl mx-auto"></div>
+
   <!-- ─── ECOSISTEMA ───────────────────────────────────────────── -->
   <section id="ecosistema" class="py-24 relative">
     <div class="max-w-7xl mx-auto px-6">
@@ -851,31 +1095,19 @@
             <span
               class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-400 border border-green-500/20 font-bold">Actual</span>
           </div>
-          <h4 class="text-2xl font-bold mb-1">Senior Fullstack Engineer</h4>
+          <h4 class="text-2xl font-bold mb-1">Backend & Integration Engineer Senior</h4>
           <div class="text-white/60 mb-4 font-medium">DETECA · Gómez Palacio, Dgo</div>
           <p class="text-slate-400 leading-relaxed mb-4 text-sm">
-            Liderazgo técnico del ERP empresarial para gestión de flota de grúas. Arquitecturé la integración GPS con
-            <strong class="text-white">Webhooks REST en tiempo real</strong>, implementé almacenamiento seguro en
-            <strong class="text-white">AWS S3 Buckets</strong> y conecté <strong class="text-white">HubSpot CRM</strong>
-            con el ERP para automatizar el pipeline comercial.
+            Liderazgo técnico en automatización empresarial e integraciones. Desarrollé <strong class="text-white">agentes de IA con OpenAI</strong> para clasificación y automatización de tareas repetitivas. Implementé flujos de negocio con <strong class="text-white">n8n</strong>, integré <strong class="text-white">HubSpot CRM v3 vía OAuth + Webhooks</strong> y mantuve la arquitectura backend enfocada en estabilidad y escalabilidad.
           </p>
           <div class="flex flex-wrap gap-2">
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">PHP/Laravel</span>
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">React</span>
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">AWS
-              S3</span>
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">HubSpot
-              API</span>
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">GPS
-              Webhooks</span>
-            <span
-              class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">Linux
-              Server</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">OpenAI API</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20 font-semibold">n8n</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">PHP/Laravel</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-300 border border-brand-500/20 font-semibold">React</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-300 border border-yellow-500/20 font-semibold">AWS S3</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-300 border border-orange-500/20 font-semibold">HubSpot OAuth</span>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-green-500/10 text-green-300 border border-green-500/20 font-semibold">Linux Server</span>
           </div>
         </div>
       </div>
@@ -948,7 +1180,7 @@
           class="text-white">reducen costos, escalan y conectan equipos</strong>.
       </p>
       <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <a href="https://github.com" target="_blank" rel="noreferrer"
+        <a href="https://github.com/JuanGlezCZ" target="_blank" rel="noreferrer"
           class="group flex items-center gap-3 px-8 py-4 rounded-full bg-white text-slate-950 font-bold hover:bg-brand-400 transition-all hover:scale-105 shadow-glow-brand text-sm">
           <svg class="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -1023,11 +1255,30 @@
               </svg>
             </button>
           </div>
-          <div class="flex items-center gap-3 text-slate-300">
-            <span class="text-lg">📍</span><span class="text-sm">Gómez Palacio, Dgo · México</span>
+          <div class="flex items-center justify-between group">
+            <div class="flex items-center gap-3 text-slate-300">
+              <span class="text-lg">💬</span>
+              <a class="hover:text-white transition-colors text-sm" href="https://wa.me/528711862385?text=Hola%20Juan%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noreferrer">+52 871 186 2385 (WhatsApp)</a>
+            </div>
+            <button onclick="copyText('+528711862385','WhatsApp')" title="Copiar número"
+              class="p-2 rounded-lg hover:bg-white/10 transition-colors text-slate-600 hover:text-brand-400 opacity-0 group-hover:opacity-100">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+              </svg>
+            </button>
           </div>
-          <div class="border-t border-white/5 pt-4 flex gap-4">
-            <a href="www.linkedin.com/in/juan-manuel-gonzalez-cruz-84848b284" target="_blank" rel="noreferrer"
+          <div class="flex items-center gap-3 text-slate-300">
+            <span class="text-lg">📍</span><span class="text-sm">Gómez Palacio, Dgo · México — Remoto / Híbrido</span>
+          </div>
+          <div class="border-t border-white/5 pt-4 flex flex-wrap gap-3">
+            <a href="https://wa.me/528711862385?text=Hola%20Juan%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20contactarte" target="_blank" rel="noreferrer"
+              class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-green-600/10 border border-green-500/20 text-green-400 text-xs font-bold hover:bg-green-600/20 transition-all hover:border-green-500/40">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              WhatsApp
+            </a>
+            <a href="https://www.linkedin.com/in/juan-manuel-gonzalez-cruz-84848b284" target="_blank" rel="noreferrer"
               class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-bold hover:bg-blue-600/20 transition-all hover:border-blue-500/40">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -1048,7 +1299,7 @@
       </div>
 
       <!-- Contact form -->
-      <form id="contactForm" class="reveal glass rounded-3xl p-7" action="https://formspree.io/f/xrgnaqkr"
+      <form id="contactForm" class="reveal glass rounded-3xl p-7" action="https://formspree.io/f/xaqaygnd"
         method="POST">
         <input type="text" name="_gotcha" class="hidden" aria-hidden="true" tabindex="-1" />
         <input type="hidden" name="_subject" value="Contacto desde portafolio — Juan González" />
@@ -1118,64 +1369,9 @@
 
   <script>
     // ═══════════════════════════════════════════════
-    // PROYECTOS — Metodología STAR con impacto real
+    // PROYECTOS — cargados desde data/projects.js
     // ═══════════════════════════════════════════════
-    const projects = [
-      {
-        title: 'ERP + Rastreo GPS en Tiempo Real',
-        about: '<strong class="text-white">+40% eficiencia operativa.</strong> Flota sin visibilidad → despachos manuales con retrasos críticos. Diseñé ERP end-to-end con Webhooks REST para GPS en vivo (sub-500ms de latencia), almacenamiento de evidencias en <em>AWS S3 Buckets</em> y app móvil Ionic para operadores en campo. Middleware JWT en todos los endpoints.',
-        tech: ['PHP', 'MySQL', 'Ionic', 'Angular', 'REST APIs', 'AWS S3', 'GPS Webhooks'],
-        img: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: '+40% eficiencia',
-        category: 'ERP · Cloud'
-      },
-      {
-        title: 'Integración CRM HubSpot ↔ ERP',
-        about: '<strong class="text-white">Pipeline 100% automatizado.</strong> Datos duplicados entre ventas y operaciones generaban errores y fricción. Conecté HubSpot CRM v3 con el ERP via REST + Webhooks bidireccionales. Un lead nuevo dispara automáticamente la orden de servicio. Cero entrada manual entre sistemas.',
-        tech: ['HubSpot API v3', 'Webhooks', 'PHP', 'REST', 'MySQL', 'Middleware'],
-        img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: '0 datos duplicados',
-        category: 'CRM · Integrations'
-      },
-      {
-        title: 'Sistema de Requisiciones Web',
-        about: '<strong class="text-white">-60% en ciclo de compra.</strong> Proceso 100% manual por email sin trazabilidad. Digitalicé el flujo completo: solicitud → aprobación multi-nivel → notificaciones en tiempo real con PHP/MySQL. Auditoría completa con historial y responsables asignados.',
-        tech: ['PHP', 'MySQL', 'JavaScript', 'CSS3', 'REST APIs'],
-        img: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: '-60% tiempo',
-        category: 'Web · ERP'
-      },
-      {
-        title: 'App de Liquidaciones (Android/iOS)',
-        about: '<strong class="text-white">-80% consultas presenciales.</strong> Operadores viajaban físicamente a la oficina para consultar pagos. App Ionic/Angular con autenticación JWT, endpoints REST seguros y UI optimizada para campo. Disponibilidad 24/7 desde cualquier dispositivo.',
-        tech: ['Ionic', 'Angular', 'JWT', 'REST APIs', 'Android', 'iOS'],
-        img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: '-80% consultas',
-        category: 'Mobile · iOS · Android'
-      },
-      {
-        title: 'Dashboards BI — KPIs en Tiempo Real',
-        about: '<strong class="text-white">De semanas a horas.</strong> Gerencia tomaba decisiones con datos de semanas de antigüedad. Power BI conectado directamente a SQL Server on-premise con DAX avanzado para KPIs de flota, ventas y finanzas. Actualización horaria automatizada sin intervención manual.',
-        tech: ['Power BI', 'DAX', 'SQL Server', 'MySQL'],
-        img: 'https://images.unsplash.com/photo-1551281044-8d8d9041f0b5?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: 'Datos en tiempo real',
-        category: 'BI · Analytics'
-      },
-      {
-        title: 'Control de Acceso con QR',
-        about: '<strong class="text-white">100% trazabilidad digital.</strong> Control de acceso manual en papel sin auditoría posible. Sistema de generación y validación de QR en tiempo real con Ionic 6/Angular. Backend Slim Framework REST API. Eliminó registros físicos y habilitó auditorías digitales completas.',
-        tech: ['Ionic 6', 'Angular', 'Slim Framework', 'REST APIs', 'QR'],
-        img: 'https://images.unsplash.com/photo-1617196034183-421b4040ed20?q=80&w=1200&auto=format&fit=crop',
-        links: { demo: '#', repo: '#', video: '' },
-        impact: '100% trazabilidad',
-        category: 'Mobile · Security'
-      }
-    ];
+    // El array `projects` se define en data/projects.js
 
     // ═══════════════════════════════════════════════
     // INIT — Theme, year, observers
@@ -1283,11 +1479,14 @@
       const el = document.getElementById('typewriter');
       if (!el) return;
       const words = [
-        'sistemas ERP empresariales',
+        'agentes de IA con OpenAI',
+        'automatización empresarial con n8n',
+        'integraciones HubSpot CRM OAuth',
+        'sistemas ERP con impacto real',
         'apps móviles iOS & Android',
-        'integraciones HubSpot CRM',
-        'arquitecturas cloud AWS',
-        'APIs REST & Webhooks',
+        'arquitecturas cloud en AWS',
+        'APIs REST & Webhooks a producción',
+        'dashboards BI en tiempo real',
       ];
       let wordIdx = 0, charIdx = 0, deleting = false;
       function tick() {
@@ -1303,33 +1502,100 @@
     })();
 
     // ═══════════════════════════════════════════════
-    // TECH CLOUD + PROJECTS RENDER + FILTER
+    // PROYECTO DESTACADO
+    // ═══════════════════════════════════════════════
+    const featuredEl = document.getElementById('featuredProject');
+    const featuredProject = projects.find(p => p.featured);
+
+    function buildFeatured() {
+      if (!featuredEl || !featuredProject) return;
+      const p = featuredProject;
+      const statusColors = {
+        'En producción': 'bg-green-500/15 text-green-400 border-green-500/25',
+        'Open Source': 'bg-brand-500/15 text-brand-400 border-brand-500/25',
+        'Case Study': 'bg-slate-500/15 text-slate-400 border-slate-500/25',
+        'NDA': 'bg-red-500/10 text-red-400 border-red-500/20'
+      };
+      const statusClass = statusColors[p.status] || statusColors['Case Study'];
+      featuredEl.innerHTML = `
+        <div class="glass-card rounded-[2.5rem] overflow-hidden group relative">
+          <div class="grid lg:grid-cols-2 gap-0">
+            <div class="relative h-72 lg:h-auto overflow-hidden">
+              <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="${p.img}" alt="${p.title}" loading="lazy"
+                onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop'">
+              <div class="absolute inset-0 bg-gradient-to-r from-transparent to-slate-950/60 lg:block hidden"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent lg:hidden"></div>
+              <div class="absolute top-5 left-5 flex flex-wrap gap-2">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/30 text-yellow-300 text-[10px] font-black uppercase tracking-widest">
+                  ⭐ Destacado
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[10px] font-bold uppercase tracking-widest ${statusClass}">
+                  ${p.status}
+                </span>
+              </div>
+              ${p.impact ? `<div class="absolute bottom-5 left-5"><span class="px-3 py-1.5 rounded-full bg-brand-500 text-slate-950 font-black text-xs uppercase tracking-wider">${p.impact}</span></div>` : ''}
+            </div>
+            <div class="p-9 flex flex-col justify-between">
+              <div>
+                <div class="text-[10px] text-slate-600 font-bold uppercase tracking-widest mb-3">${p.category}</div>
+                <h3 class="text-2xl lg:text-3xl font-extrabold mb-4 group-hover:text-brand-400 transition-colors leading-tight">${p.title}</h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-6">${p.about}</p>
+                <div class="flex flex-wrap gap-1.5 mb-8">
+                  ${p.tech.map(t => `<span class="text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400">${t}</span>`).join('')}
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                ${p.links.demo !== '#' ? `<a href="${p.links.demo}" class="group/btn px-6 py-3 rounded-full bg-brand-500 text-slate-950 font-bold text-sm hover:bg-brand-400 transition-all hover:scale-105 shadow-glow-brand flex items-center gap-2">Ver Proyecto <svg class="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>` : ''}
+                ${p.links.repo !== '#' ? `<a href="${p.links.repo}" target="_blank" rel="noreferrer" class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 font-bold text-sm transition-all flex items-center gap-2 hover:border-white/20"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Código</a>` : ''}
+                ${p.links.video ? `<button class="px-6 py-3 rounded-full border border-brand-500/30 text-brand-400 font-bold text-sm hover:bg-brand-500/10 transition-all flex items-center gap-2 video-btn" data-video="${p.links.video}">▶ Ver Demo</button>` : ''}
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+      document.querySelectorAll('.video-btn').forEach(btn => {
+        btn.addEventListener('click', () => openLightbox(`<iframe src="${btn.dataset.video}" title="demo" class="w-full h-full" allowfullscreen></iframe>`));
+      });
+    }
+
+    // ═══════════════════════════════════════════════
+    // TABS DE CATEGORÍA + PROJECTS RENDER + FILTER
     // ═══════════════════════════════════════════════
     const grid = document.getElementById('projectsGrid');
     const input = document.getElementById('filterInput');
     const clearBtn = document.getElementById('clearFilter');
     const countEl = document.getElementById('projectCount');
+    let activeTab = 'Todos';
 
-    function buildTechCloud() {
-      const cloud = document.getElementById('techCloud');
-      if (!cloud) return;
-      const freq = {};
-      projects.forEach(p => p.tech.forEach(t => { freq[t] = (freq[t] || 0) + 1; }));
-      Object.entries(freq).sort((a, b) => b[1] - a[1]).forEach(([tech, count]) => {
+    function buildCategoryTabs() {
+      const tabsEl = document.getElementById('categoryTabs');
+      if (!tabsEl) return;
+      const cats = ['Todos', ...new Set(projects.map(p => p.category).filter(Boolean))];
+      cats.forEach(cat => {
         const btn = document.createElement('button');
-        btn.className = 'tech-filter-tag';
-        btn.dataset.tech = tech;
-        btn.innerHTML = `${tech} <span class="ml-1 opacity-35 font-normal text-[10px]">${count}</span>`;
+        const isActive = cat === 'Todos';
+        btn.className = `tech-filter-tag${isActive ? ' active-filter' : ''}`;
+        btn.dataset.cat = cat;
+        const count = cat === 'Todos' ? projects.length : projects.filter(p => p.category === cat).length;
+        btn.innerHTML = `${cat} <span class="ml-1 opacity-35 font-normal text-[10px]">${count}</span>`;
         btn.addEventListener('click', () => {
-          const isActive = btn.classList.contains('active-filter');
-          document.querySelectorAll('.tech-filter-tag').forEach(b => b.classList.remove('active-filter'));
-          input.value = isActive ? '' : tech;
-          if (!isActive) btn.classList.add('active-filter');
+          document.querySelectorAll('#categoryTabs .tech-filter-tag').forEach(b => b.classList.remove('active-filter'));
+          btn.classList.add('active-filter');
+          activeTab = cat;
+          input.value = '';
           applyFilter();
         });
-        cloud.appendChild(btn);
+        tabsEl.appendChild(btn);
       });
     }
+
+    const statusColors = {
+      'En producción': 'bg-green-500/15 text-green-400 border-green-500/25',
+      'Open Source': 'bg-brand-500/15 text-brand-400 border-brand-500/25',
+      'Case Study': 'bg-slate-500/15 text-slate-400 border-slate-500/25',
+      'NDA': 'bg-red-500/10 text-red-400 border-red-500/20'
+    };
 
     function render(list) {
       grid.innerHTML = '';
@@ -1339,6 +1605,7 @@
         return;
       }
       list.forEach(p => {
+        const sc = statusColors[p.status] || statusColors['Case Study'];
         const card = document.createElement('article');
         card.className = 'reveal glass-card rounded-[2rem] overflow-hidden group cursor-default';
         card.innerHTML = `
@@ -1347,6 +1614,7 @@
               src="${p.img}" alt="${p.title}" loading="lazy"
               onerror="this.src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop'">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            ${p.status ? `<div class="absolute top-3 right-3"><span class="inline-flex px-2.5 py-0.5 rounded-full border text-[9px] font-bold uppercase tracking-widest ${sc}">${p.status}</span></div>` : ''}
             <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2">
               <div class="flex flex-wrap gap-1.5">
                 ${p.tech.slice(0, 3).map(t => `<span class="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-white">${t}</span>`).join('')}
@@ -1359,13 +1627,12 @@
             <h4 class="font-bold text-lg mb-3 group-hover:text-brand-400 transition-colors leading-tight">${p.title}</h4>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">${p.about}</p>
             <div class="flex items-center gap-4">
-              ${p.links.demo !== '#' ? `<a class="text-xs font-bold uppercase tracking-widest text-brand-400 hover:text-white transition-colors flex items-center gap-1" href="${p.links.demo}" target="_blank" rel="noreferrer">Demo <span>↗</span></a>` : ''}
+              ${p.links.demo !== '#' ? `<a class="text-xs font-bold uppercase tracking-widest text-brand-400 hover:text-white transition-colors flex items-center gap-1" href="${p.links.demo}">Ver Demo <span>↗</span></a>` : ''}
               ${p.links.repo !== '#' ? `<a class="text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors" href="${p.links.repo}" target="_blank" rel="noreferrer">Código</a>` : ''}
               ${p.links.video ? `<button class="text-xs font-bold uppercase tracking-widest text-brand-400 hover:text-white transition-colors video-btn" data-video="${p.links.video}">▶ Video</button>` : ''}
             </div>
           </div>`;
 
-        // 3D tilt effect
         card.addEventListener('mousemove', e => {
           const r = card.getBoundingClientRect();
           const rx = (e.clientY - r.top - r.height / 2) / 28;
@@ -1385,20 +1652,28 @@
 
     function applyFilter() {
       const q = input.value.toLowerCase().trim();
-      if (!q) {
-        document.querySelectorAll('.tech-filter-tag').forEach(b => b.classList.remove('active-filter'));
-        return render(projects);
+      let list = activeTab === 'Todos' ? projects : projects.filter(p => p.category === activeTab);
+      if (q) {
+        list = list.filter(p =>
+          p.tech.some(t => t.toLowerCase().includes(q)) ||
+          p.title.toLowerCase().includes(q) ||
+          p.about.toLowerCase().includes(q)
+        );
       }
-      render(projects.filter(p =>
-        p.tech.some(t => t.toLowerCase().includes(q)) ||
-        p.title.toLowerCase().includes(q) ||
-        p.about.toLowerCase().includes(q)
-      ));
+      render(list);
     }
 
     input.addEventListener('input', applyFilter);
-    clearBtn.addEventListener('click', () => { input.value = ''; applyFilter(); });
-    buildTechCloud();
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      activeTab = 'Todos';
+      document.querySelectorAll('#categoryTabs .tech-filter-tag').forEach((b, i) => {
+        b.classList.toggle('active-filter', i === 0);
+      });
+      applyFilter();
+    });
+    buildFeatured();
+    buildCategoryTabs();
     render(projects);
 
     // ═══════════════════════════════════════════════
@@ -1537,6 +1812,75 @@
       s.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': items });
       document.body.appendChild(s);
     } catch (e) { }
+  </script>
+
+  <!-- Page Loader + Particles -->
+  <script>
+    // ─── PAGE LOADER ────────────────────────────────────────
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loader = document.getElementById('page-loader');
+        if (loader) loader.classList.add('loaded');
+      }, 900);
+    });
+
+    // ─── PARTICLES ──────────────────────────────────────────
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+      const COUNT = 55;
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.2 + 0.3,
+          dx: (Math.random() - 0.5) * 0.25,
+          dy: (Math.random() - 0.5) * 0.25,
+          o: Math.random() * 0.4 + 0.1
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.x += p.dx; p.y += p.dy;
+          if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(56,189,248,${p.o})`;
+          ctx.fill();
+        });
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 110) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(56,189,248,${0.08 * (1 - dist / 110)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
   </script>
 
   <!-- Supabase Visitor Tracking -->
